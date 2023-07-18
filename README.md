@@ -1,3 +1,3 @@
-# TikTakToe
-TikTakToe game programmed in Python.
-Options of using machine learning to play against a bot or double player white 2 human players. 
+# TicTacToe
+TicTacToe game programmed in Python.
+Options of Single Player to play against AI bot or double player with 2 human players. 
