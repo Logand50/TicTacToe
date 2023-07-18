@@ -1,15 +1,28 @@
-import pygame
-import copy 
-import random 
+''' Tic-Tac-Toe Game using Pygame
 
+This module implements a simple Tic-Tac-Toe game with a graphical interface using the Pygame library. It allows two players to take turns and play the game on the window. It also includes a single-player mode where the computer AI makes moves against the human player.
+
+Author: Your Name
+
+Instructions:
+- Press 1 for Single player
+- Press 2 for Double player
+- Press spacebar to reset the game
+'''
+
+import copy
+import random
+import pygame
+
+# pylint: disable=E1101
 pygame.init()
 
 dis_height = 600
 dis_width = 800
 
-board = pygame.image.load('board.jpg')
-x_icon = pygame.image.load('x_icon3.png')
-o_icon = pygame.image.load('o_icon.png')
+board = pygame.image.load('/workspaces/TicTacToe/TicTacToe/board.jpg')
+x_icon = pygame.image.load('/workspaces/TicTacToe/TicTacToe/x_icon3.png')
+o_icon = pygame.image.load('/workspaces/TicTacToe/TicTacToe/o_icon.png')
 
 display = pygame.display.set_mode((dis_width, dis_height))
 
@@ -51,8 +64,8 @@ class Piece(object):
 def redraw_game_window(score_x, score_o):
     display.blit(board, (0,0))
     pygame.draw.rect(display, (192,192,192), [600, 0, 200, 600])
-    font = pygame.font.Font('Teko-Light.ttf', 50)
-    instructions_font = pygame.font.Font('Teko-Light.ttf', 24)
+    font = pygame.font.Font('/workspaces/TicTacToe/TicTacToe/Teko-Light.ttf', 50)
+    instructions_font = pygame.font.Font('/workspaces/TicTacToe/TicTacToe/Teko-Light.ttf', 24)
     title = font.render('Tic-Tac-Toe', 1, (0, 153, 255))
     author = font.render('By Logan Dye', 1 , (0,153,255))
     if move_count % 2 == 0:
@@ -165,8 +178,11 @@ def computer_move(val):
             if board_copy[i][j] == 0:               
                 board_copy[i][j] = val
                 if is_game_over(board_copy):
-                        pieces_on_board.append(Piece(j*200, i*200, False)) if val == -1 else pieces_on_board.append(Piece(j*200, i*200, True))
-                        return board_copy
+                    if val == -1:
+                        pieces_on_board.append(Piece(j*200, i*200, False))
+                    else:
+                        pieces_on_board.append(Piece(j*200, i*200, True))
+                    return board_copy
                 
     op_val = val * -1
     for i in range(3):
@@ -175,20 +191,23 @@ def computer_move(val):
             if board_copy[i][j] == 0:
                 board_copy[i][j] = op_val
                 if is_game_over(board_copy):
-                    pieces_on_board.append(Piece(j*200, i*200, False)) if val == -1 else pieces_on_board.append(Piece(j*200, i*200, True))
+                    if val == -1:
+                        pieces_on_board.append(Piece(j*200, i*200, False))
+                    else:
+                        pieces_on_board.append(Piece(j*200, i*200, True))
                     board_copy[i][j] = val
                     return board_copy
-                
     move = random_move()
-    if move != None:
+    if move is not None:
         x, y = move
         board_copy = copy.deepcopy(board_values)
         board_copy[y][x] = val
-        pieces_on_board.append(Piece(x*200, y*200, False)) if val == -1 else pieces_on_board.append(Piece(x*200, y*200, True))
+        if val == -1:
+            pieces_on_board.append(Piece(x*200, y*200, False)) 
+        else:
+            pieces_on_board.append(Piece(x*200, y*200, True))
         return board_copy
     return board_values
-            
-
 def random_move():
     valid_moves = []
     for i in range(3):
@@ -201,7 +220,7 @@ def random_move():
         return None
 
 
-run = True 
+run = True
 while run:
     clock.tick(50)
 
