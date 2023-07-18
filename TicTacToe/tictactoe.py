@@ -2,7 +2,7 @@
 
 This module implements a simple Tic-Tac-Toe game with a graphical interface using the Pygame library. It allows two players to take turns and play the game on the window. It also includes a single-player mode where the computer AI makes moves against the human player.
 
-Author: Your Name
+Author: Logan Dye
 
 Instructions:
 - Press 1 for Single player
