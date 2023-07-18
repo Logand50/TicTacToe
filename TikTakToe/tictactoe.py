@@ -53,7 +53,7 @@ def redraw_game_window(score_x, score_o):
     pygame.draw.rect(display, (192,192,192), [600, 0, 200, 600])
     font = pygame.font.Font('Teko-Light.ttf', 50)
     instructions_font = pygame.font.Font('Teko-Light.ttf', 24)
-    title = font.render('Tik-Tak-Toe', 1, (0, 153, 255))
+    title = font.render('Tic-Tac-Toe', 1, (0, 153, 255))
     author = font.render('By Logan Dye', 1 , (0,153,255))
     if move_count % 2 == 0:
         turn = 'X'
